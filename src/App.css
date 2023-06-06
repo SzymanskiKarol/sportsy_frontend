@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+body {
+  /* position: relative; */
+}
+
 #root {
   height: 100vh;
   display: flex;
@@ -22,6 +26,7 @@ header {
 
 /* height of the container */
 .leaflet-container {
+  position: relative;
   height: 90vh;
   width: 100vw;
   /* border-radius: 2rem; */
@@ -38,4 +43,20 @@ header {
   border-radius: 50%;
   font-size: 1.2rem;
   box-shadow: 0 0 0px 5px #fff;
+}
+
+.form-container {
+  height: 90vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-button {
+  position: absolute;
+  background-color: #fff;
+  top: 10px;
+  right: 10px;
+  z-index: 10000;
 }

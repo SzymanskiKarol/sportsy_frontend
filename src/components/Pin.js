@@ -16,7 +16,6 @@ export const Pin = ({ pin }) => {
                     {<div>
                         <h2>{pin.title}</h2>
                         <p>{pin.desc}</p>
-                        <p>Rating: {pin.rating}</p>
                         <p>Created by: {pin.username}</p>
                     </div>}
                 </Popup>

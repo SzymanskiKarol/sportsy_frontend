@@ -24,8 +24,8 @@ const App = () => {
   return (<div className="App">
     <AppContext.Provider value={{ showForm, setShowForm, darkMap, setDarkMap, satteliteMap, setSatteliteMap, pins, setPins }}>
       <Navbar darkMap={darkMap} setDarkMap={setDarkMap} satteliteMap={satteliteMap} setSatteliteMap={setSatteliteMap} />
-      <Map darkMap={darkMap} satteliteMap={satteliteMap} />
-      {showForm && <AddPin />}
+      {showForm ? <AddPin /> :
+        <Map darkMap={darkMap} satteliteMap={satteliteMap} />}
     </AppContext.Provider>
   </div>)
 }

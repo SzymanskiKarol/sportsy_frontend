@@ -1,13 +1,15 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { AppContext } from "../helpers/AppContext"
 import { divIcon } from 'leaflet';
 import 'leaflet/dist/leaflet.css'
 import { MapContainer, TileLayer, useMapEvents } from 'react-leaflet'
 import MarkerClusterGroup from 'react-leaflet-cluster'
 import { Pin } from './Pin'
-
+import { AddNewPin } from './AddNewPin'
 
 export const Map = () => {
+    const [addNew, setAddNew] = useState(null)
+
     const { darkMap, setDarkMap, satteliteMap, setSatteliteMap, pins, setPins, showForm, setShowForm } = useContext(AppContext)
 
 
@@ -21,12 +23,9 @@ export const Map = () => {
 
     const MapClick = () => {
         const map = useMapEvents({
-            click: () => {
+            click: (e) => {
+                setAddNew({ lat: e.latlng.lat, lng: e.latlng.lng })
                 map.locate()
-            },
-            locationfound: (location) => {
-                console.log(location.latlng)
-                setShowForm(true)
             },
         })
         return null
@@ -53,8 +52,12 @@ export const Map = () => {
                     <Pin key={pin._id} pin={pin} />
                 ))}
             </MarkerClusterGroup>
+            {addNew && <AddNewPin
+                pin={addNew} />}
             <MapClick />
         </MapContainer >
     )
 }
+
+
 

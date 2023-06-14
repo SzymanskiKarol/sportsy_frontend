@@ -10,7 +10,7 @@ import { AddNewPin } from './AddNewPin'
 export const Map = () => {
     const [addNew, setAddNew] = useState(null)
 
-    const { darkMap, setDarkMap, satteliteMap, setSatteliteMap, pins, setPins, showForm, setShowForm } = useContext(AppContext)
+    const { darkMap, setDarkMap, satteliteMap, setSatteliteMap, pins, setPins, showForm, setShowForm, setLat, setLong } = useContext(AppContext)
 
 
     const createClusterCustomIcon = function (cluster) {
@@ -25,6 +25,8 @@ export const Map = () => {
         const map = useMapEvents({
             click: (e) => {
                 setAddNew({ lat: e.latlng.lat, lng: e.latlng.lng })
+                setLat(e.latlng.lat)
+                setLong(e.latlng.lng)
                 map.locate()
             },
         })

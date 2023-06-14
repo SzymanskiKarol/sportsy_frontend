@@ -14,6 +14,9 @@ const App = () => {
   const [pins, setPins] = useState([])
   const [showForm, setShowForm] = useState(false)
 
+  const [lat, setLat] = useState('')
+  const [long, setLong] = useState('')
+
   useEffect(() => {
     axios.get('http://localhost:8000/api/pins/').then((response) => {
       console.log(response.data);
@@ -22,10 +25,10 @@ const App = () => {
   }, [])
 
   return (<div className="App">
-    <AppContext.Provider value={{ showForm, setShowForm, darkMap, setDarkMap, satteliteMap, setSatteliteMap, pins, setPins }}>
-      <Navbar darkMap={darkMap} setDarkMap={setDarkMap} satteliteMap={satteliteMap} setSatteliteMap={setSatteliteMap} />
-      {showForm ? <AddPin /> :
-        <Map darkMap={darkMap} satteliteMap={satteliteMap} />}
+    <AppContext.Provider value={{ lat, setLat, long, setLong, showForm, setShowForm, darkMap, setDarkMap, satteliteMap, setSatteliteMap, pins, setPins }}>
+      <Navbar />
+      {showForm && <AddPin />}
+      <Map />
     </AppContext.Provider>
   </div>)
 }

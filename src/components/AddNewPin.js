@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
 import { AppContext } from "../helpers/AppContext"
+import React, { useContext, useState } from 'react'
 import AddLocationImg from '../images/addlocation.png'
-import { Marker, Tooltip } from 'react-leaflet'
-import { Icon } from 'leaflet'
+import { Marker, Popup, Tooltip } from 'react-leaflet'
+import { Icon, Point } from 'leaflet'
 
 const customIcon = new Icon({
     iconUrl: AddLocationImg,
@@ -12,6 +12,9 @@ const customIcon = new Icon({
 
 export const AddNewPin = ({ pin }) => {
     const { showForm, setShowForm } = useContext(AppContext)
+    // const [markerVisible, setMarkerVisible] = useState(false)
+
+
 
     return (
         <div className="pin">
@@ -21,9 +24,12 @@ export const AddNewPin = ({ pin }) => {
                     setShowForm(!showForm)
                 },
             }} position={[pin.lat, pin.lng]} icon={customIcon}>
-                <Tooltip permanent>
-                    <h1>Click me to add new</h1>
+                <Tooltip offset={[0, -20]} direction="top" permanent>
+                    <div>
+                        <p>Click me to add new pin here</p>
+                    </div>
                 </Tooltip>
+
             </Marker>
         </div>
     )
